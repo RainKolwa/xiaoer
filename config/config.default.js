@@ -1,6 +1,7 @@
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
+require('dotenv').config();
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -17,6 +18,24 @@ module.exports = appInfo => {
 
   // add your middleware config here
   config.middleware = [];
+
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+  // error handling
+  config.onerror = {
+    all(err, ctx) {
+      ctx.status = err.status || 500;
+
+      ctx.body = {
+        code: ctx.status,
+        success: false,
+        message: err.message,
+      };
+    },
+  };
 
   // add your user config here
   const userConfig = {
