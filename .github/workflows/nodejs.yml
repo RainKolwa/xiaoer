@@ -7,7 +7,8 @@ on:
 jobs:
   build:
 
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
+    environment: prod
 
     steps:
     - uses: actions/checkout@v2
@@ -25,12 +26,17 @@ jobs:
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         npm run ci
+        - name: ls -a via ssh
     - name: Deploy
-      run: |
-        sudo cp -r ./ /var/www/xiaoer
-        cd /var/www/xiaoer
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        npm run stop
-        npm start
-
+      uses: fifsky/ssh-action@master
+      with:
+        command: |
+          cd /var/www/xiaoer
+          git pull --rebase
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          npm run stop
+          npm start
+        host: ${{ secrets.HOST }}
+        user: root
+        key: ${{ secrets.KEY }}
