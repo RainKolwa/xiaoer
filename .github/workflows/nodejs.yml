@@ -26,7 +26,6 @@ jobs:
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         npm run ci
-        - name: ls -a via ssh
     - name: Deploy
       uses: fifsky/ssh-action@master
       with:
@@ -35,6 +34,7 @@ jobs:
           git pull --rebase
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          npm i --production
           npm run stop
           npm start
         host: ${{ secrets.HOST }}
