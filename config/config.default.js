@@ -15,15 +15,11 @@ module.exports = appInfo => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1616120968794_2553';
-
-  // add your middleware config here
-  config.middleware = [];
-
-  config.security = {
-    csrf: {
-      enable: false,
-    },
-  };
+  
+  config.middleware = ['errorHandler'];
+  config.errorHandler = {
+    match: '/api',
+  },
   // error handling
   config.onerror = {
     all(err, ctx) {
@@ -36,6 +32,18 @@ module.exports = appInfo => {
       };
     },
   };
+
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+  // alicloud
+  config.alicloud = {
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    accessKeySecret: process.env.ACCESS_KEY_SECRET,
+    accountName: process.env.ACOUNT_NAME,
+  }
 
   // add your user config here
   const userConfig = {
