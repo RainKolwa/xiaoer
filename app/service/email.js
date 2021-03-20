@@ -8,8 +8,8 @@ class MailService extends Service {
     const { alicloud } = this.app.config;
     const { accessKeyId, accessKeySecret, accountName } = alicloud;
     const client = new Core({
-      accessKeyId: accessKeyId,
-      accessKeySecret: accessKeySecret,
+      accessKeyId,
+      accessKeySecret,
       endpoint: 'https://dm.aliyuncs.com',
       apiVersion: '2015-11-23',
     });
