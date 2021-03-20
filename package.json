@@ -26,7 +26,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-xiaoer",
+    "start": "egg-scripts start --daemon --title=egg-server-xiaoer --env=prod",
     "stop": "egg-scripts stop --title=egg-server-xiaoer",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
