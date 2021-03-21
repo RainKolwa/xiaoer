@@ -38,11 +38,20 @@ module.exports = appInfo => {
       enable: false,
     },
   };
+  // validate
+  config.validate = {
+    convert: true,
+  };
+
   // alicloud
   config.alicloud = {
     accessKeyId: process.env.ACCESS_KEY_ID,
     accessKeySecret: process.env.ACCESS_KEY_SECRET,
     accountName: process.env.ACOUNT_NAME,
+  };
+  // caiyun
+  config.caiyun = {
+    token: process.env.CAIYUN_TOKEN,
   };
 
   // add your user config here
