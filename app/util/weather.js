@@ -6,7 +6,7 @@
 // 0.35～0.48	11.33~51.30	大雨／雪
 // >=0.48	>=51.30	暴雨／雪
 
-const dayjs = require('dayjs');
+const dateUtil = require('./date');
 const SKYCON = {
   CLEAR_DAY: '晴（白天）',
   CLEAR_NIGHT: '晴（夜间）',
@@ -52,7 +52,7 @@ module.exports = {
     const { date, min: temperatureMin, max: temperatureMax } = temperature[0];
     const { avg: { chn } } = aqi[0];
     const { value: skyconValue } = skycon_08h_20h[0];
-    return `${dayjs(date).format('MM-DD')} | ${
+    return `${dateUtil.format(date, 'MM-DD')} | ${
       SKYCON[skyconValue]
     } | ${Math.round(temperatureMin)} ~ ${Math.round(
       temperatureMax
