@@ -8,10 +8,10 @@ const weatherUtil = require('../util/weather');
 module.exports = {
   schedule: {
     type: 'worker',
-    cron: '0 0 8 * * *',
+    cron: '0 30 7 * * *',
   },
   async task(ctx) {
-    const res = await ctx.service.weather({
+    const res = await ctx.service.weather.daily({
       lat: 31.242727,
       lng: 121.497125,
     });
