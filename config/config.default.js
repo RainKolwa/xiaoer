@@ -37,6 +37,7 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
+    domainWhiteList: [ 'http://localhost:5000' ],
   };
   // validate
   config.validate = {
