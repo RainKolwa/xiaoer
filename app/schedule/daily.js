@@ -12,10 +12,8 @@ module.exports = {
   },
   async task(ctx) {
     const res = await ctx.service.weather.daily({
-      lat: 24.444887,
-      lng: 118.119432,
-      // lat: 31.242727,
-      // lng: 121.497125,
+      lat: 31.242727,
+      lng: 121.497125,
     });
     const msg = weatherUtil.shortReport(res);
     const mailto = 'rainkolwa@gmail.com';
