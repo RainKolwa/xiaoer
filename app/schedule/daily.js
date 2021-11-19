@@ -20,4 +20,5 @@ module.exports = {
     const subject = 'Daily Weather Report';
     ctx.service.email.send({ mailto, subject, body: msg });
   },
+  disable: true,
 };
