@@ -9,6 +9,7 @@ module.exports = {
   schedule: {
     type: 'worker',
     cron: '0 30 7 * * *',
+    disable: true,
   },
   async task(ctx) {
     const res = await ctx.service.weather.daily({
@@ -20,5 +21,4 @@ module.exports = {
     const subject = 'Daily Weather Report';
     ctx.service.email.send({ mailto, subject, body: msg });
   },
-  disable: true,
 };
